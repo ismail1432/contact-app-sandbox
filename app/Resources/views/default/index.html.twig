@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <h1>Annuaire de contact !</h1>
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+
+            {% if contacts|length == 0 %}
+            <h2>Aucun contact</h2>
+           {% endif %}
+            <ul>
+
+                {% for contact in contacts %}
+<li>{{ contact.nom }} <a href="{{ path('delete', {'id':contact.id}) }}">supprimer</a> |||| <a href="{{ path('edit', {'id':contact.id}) }}">modifier</a> </li>
+
+                {% endfor %}
+
+
+            </ul>
+
+
+            <a href="{{ path('add') }}">Ajouter</a>
+    </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
