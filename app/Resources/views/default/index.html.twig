@@ -9,6 +9,9 @@
                     {{ message }}
                 </div>
             {% endfor %}
+            {% for i in range(1, 10, 2) %}
+                {{ i }}{% if not loop.last %},{% endif %}
+            {% endfor %}
 
 
             {% if contacts|length == 0 %}

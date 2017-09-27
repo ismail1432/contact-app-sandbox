@@ -28,6 +28,12 @@ services:
         # but if a service is unused, it's removed anyway
         exclude: '../../src/AppBundle/{Entity,Repository,Tests}'
 
+    AuthenticatorSandboxBundle\:
+            resource: '../../src/AuthenticatorSandboxBundle/*'
+            # you can exclude directories or files
+            # but if a service is unused, it's removed anyway
+            exclude: '../../src/AuthenticatorSandboxBundle/{Entity,Repository,Tests}'
+
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
     AppBundle\Controller\:
