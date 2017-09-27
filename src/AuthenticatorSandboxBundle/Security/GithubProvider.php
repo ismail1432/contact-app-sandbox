@@ -18,15 +18,19 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 class GithubProvider implements UserProviderInterface
 {
     private $client;
+    private $client_id;
+
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
+
     public function loadUserByUsername($username)
     {
         $response = $this->client->get('http://www.smaine.me');
-die(var_dump($response));
+        $this->client->post('https://github.com/login/oauth/access_token?token=');
+
         // make a call to your webservice here
         $userData = '';
         // pretend it returns an array on success, false if there is no user

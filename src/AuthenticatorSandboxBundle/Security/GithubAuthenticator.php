@@ -9,6 +9,7 @@
 namespace AuthenticatorSandboxBundle\Security;
 
 
+use GuzzleHttp\Client;
 use M6Web\Bundle\GuzzleHttpBundle\M6WebGuzzleHttpBundle;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\SimpleAuthenticatorInterface;
@@ -19,13 +20,29 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
 
+
 class GithubAuthenticator implements SimplePreAuthenticatorInterface
 {
+
+    private $client_id;
+    private $client;
+    private $secret_id;
+
+    public function __construct(Client $client, $client_id, $secret_id)
+    {
+
+        $this->client_id = $client_id;
+        $this->client = $client;
+        $this->secret_id = $secret_id;
+
+    }
 
     public function createToken(Request $request, $providerKey)
     {
         // look for an apikey query parameter
         $apiKey = $request->query->get('code');
+
+        $this->client->post('https://github.com/login/oauth/access_token?token=');
 
         if (!$apiKey) {
             throw new BadCredentialsException('eee');
@@ -69,7 +86,7 @@ class GithubAuthenticator implements SimplePreAuthenticatorInterface
             );
         }
 
-        $user = $userProvider->loadUserByUsername($username);
+        $user = $userProvider->loadUser($apiKey);
 
         return new PreAuthenticatedToken(
             $user,

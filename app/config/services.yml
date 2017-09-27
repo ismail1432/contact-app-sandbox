@@ -51,7 +51,9 @@ services:
 
     github_authenticator:
            class: AuthenticatorSandboxBundle\Security\GithubAuthenticator
-           #argument: ['@logger']
+           arguments:
+               $client_id: '%client_id%'
+               $secret_id: '%secret_id%'
 
     GuzzleHttp\Client: '@m6web_guzzlehttp'
 
