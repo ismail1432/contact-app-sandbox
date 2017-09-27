@@ -2,6 +2,7 @@
 
 namespace AuthenticatorSandboxBundle\Controller;
 
+use AuthenticatorSandboxBundle\Security\GithubAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -24,19 +25,19 @@ class AuthenticatorController extends Controller
      */
     public function adminAction()
     {
+        //https://github.com/login/oauth/authorize?client_id=dbfe8cf8abcd145d8d2d
 
-        return $this->redirectToRoute('admin/github');
+        //return $this->redirectToRoute('admin-github');
 
     }
 
     /**
-     * @Route("/admin/github", name="admin")
-     * @Template("adminGithub/admin.html.twig")
+     * @Route("/admin/github", name="admin-github")
      */
     public function adminGithubAction()
     {
 
-        //return $this->redirectToRoute('admin/github');
+        return $this->render('authenticator/admin-github.html.twig');
     }
 
     /**

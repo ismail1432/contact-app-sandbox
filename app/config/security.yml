@@ -4,10 +4,8 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
         oauth.provider.github:
-            id: AuthenticatorSandboxBundle\Security\GithubProvider
+            id: github_provider
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -18,7 +16,7 @@ security:
         main:
             anonymous: ~
             simple_preauth:
-                authenticator: AuthenticatorSandboxBundle\Security\GithubAuthenticator
+                authenticator: github_authenticator
             provider: oauth.provider.github
 
 
@@ -26,4 +24,4 @@ security:
             #form_login: ~
     access_control:
             # require ROLE_ADMIN for /admin*
-            - { path: ^/admin, roles: ROLE_ADMIN }
+            - { path: ^/administrator }

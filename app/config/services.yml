@@ -46,6 +46,16 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
+    github_provider:
+           class: AuthenticatorSandboxBundle\Security\GithubProvider
+
+    github_authenticator:
+           class: AuthenticatorSandboxBundle\Security\GithubAuthenticator
+           #argument: ['@logger']
+
+    GuzzleHttp\Client: '@m6web_guzzlehttp'
+
+
 
     ###DEMO##
     app.sayHello:

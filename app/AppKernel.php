@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new AuthenticatorSandboxBundle\AuthenticatorSandboxBundle(),
-            //new M6Web\Bundle\GuzzleHttpBundle\M6WebGuzzleHttpBundle()
+            new M6Web\Bundle\GuzzleHttpBundle\M6WebGuzzleHttpBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -9,6 +9,7 @@
 namespace AuthenticatorSandboxBundle\Security;
 
 
+use GuzzleHttp\Client;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -16,9 +17,16 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class GithubProvider implements UserProviderInterface
 {
+    private $client;
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+    }
 
     public function loadUserByUsername($username)
     {
+        $response = $this->client->get('http://www.smaine.me');
+die(var_dump($response));
         // make a call to your webservice here
         $userData = '';
         // pretend it returns an array on success, false if there is no user
@@ -26,7 +34,7 @@ class GithubProvider implements UserProviderInterface
         if ($userData) {
             $password = '...';
 
-            // ...
+
 
            // return new User($username, $password, $salt, $roles);
         }

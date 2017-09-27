@@ -68,3 +68,9 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+m6web_guzzlehttp:
+    clients:
+        default: ~
+        other:
+            base_uri: "http://domain.tld/"
