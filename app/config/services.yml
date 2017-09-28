@@ -53,7 +53,7 @@ services:
            class: AuthenticatorSandboxBundle\Security\GithubAuthenticator
            arguments:
                $client_id: '%client_id%'
-               $secret_id: '%secret_id%'
+               $client_secret: '%client_secret%'
 
     GuzzleHttp\Client: '@m6web_guzzlehttp'
 

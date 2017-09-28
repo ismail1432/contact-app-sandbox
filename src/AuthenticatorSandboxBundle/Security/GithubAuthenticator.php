@@ -9,9 +9,11 @@
 namespace AuthenticatorSandboxBundle\Security;
 
 
+use AuthenticatorSandboxBundle\Entity\User;
 use GuzzleHttp\Client;
 use M6Web\Bundle\GuzzleHttpBundle\M6WebGuzzleHttpBundle;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Router;
 use Symfony\Component\Security\Core\Authentication\SimpleAuthenticatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -26,34 +28,43 @@ class GithubAuthenticator implements SimplePreAuthenticatorInterface
 
     private $client_id;
     private $client;
-    private $secret_id;
+    private $client_secret;
+    private $router;
 
-    public function __construct(Client $client, $client_id, $secret_id)
+    public function __construct(Client $client, $client_id, $client_secret, Router $router)
     {
 
         $this->client_id = $client_id;
         $this->client = $client;
-        $this->secret_id = $secret_id;
+        $this->client_secret = $client_secret;
+        $this->router = $router;
 
     }
 
     public function createToken(Request $request, $providerKey)
     {
         // look for an apikey query parameter
-        $apiKey = $request->query->get('code');
+        $code = $request->query->get('code');
+        $redirectUri = $this->router->generate('admin', [], ROUTER::ABSOLUTE_URL);
+        $datas =sprintf('https://github.com/login/oauth/access_token?client_id=%s&client_secret=%s&code=%s&redirect_uri=%s',
+            $this->client_id,
+            $this->client_secret,
+            $code,
+            urlencode($redirectUri)
+        );
 
-        $this->client->post('https://github.com/login/oauth/access_token?token=');
-
-        if (!$apiKey) {
-            throw new BadCredentialsException('eee');
-
-            // or to just skip api key authentication
-            // return null;
+        $response = $this->client->post($datas);
+        $body = $response->getBody()->getContents();
+        $tab =  explode("=",$body);
+        $token = explode("&",$tab[1]);
+        $token = $token[0];
+        if (!isset($token)) {
+            throw new BadCredentialsException('No access_token returned by Github. Start over the process.');
         }
 
         return new PreAuthenticatedToken(
             'anon.',
-            $apiKey,
+            $token,
             $providerKey
         );
     }
@@ -65,20 +76,11 @@ class GithubAuthenticator implements SimplePreAuthenticatorInterface
 
     public function authenticateToken(TokenInterface $token, UserProviderInterface $userProvider, $providerKey)
     {
-       if (!$userProvider instanceof GithubProvider) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'The user provider must be an instance of ApiKeyUserProvider (%s was given).',
-                    get_class($userProvider)
-                )
-            );
-        }
-
         $apiKey = $token->getCredentials();
+        $user = $userProvider->loadUserByUsername($apiKey);
 
-        $username = $userProvider->loadUserByUsername($apiKey);
 
-        if (!$username) {
+        if (!$user) {
             // CAUTION: this message will be returned to the client
             // (so don't put any un-trusted messages / error strings here)
             throw new CustomUserMessageAuthenticationException(
@@ -86,7 +88,15 @@ class GithubAuthenticator implements SimplePreAuthenticatorInterface
             );
         }
 
-        $user = $userProvider->loadUser($apiKey);
+        $user = $token->getUser();
+        if ($user instanceof User) {
+            return new PreAuthenticatedToken(
+                $user,
+                $apiKey,
+                $providerKey,
+                $user->getRoles()
+            );
+        }
 
         return new PreAuthenticatedToken(
             $user,

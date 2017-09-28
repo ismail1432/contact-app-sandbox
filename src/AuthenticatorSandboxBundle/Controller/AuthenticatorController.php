@@ -6,6 +6,7 @@ use AuthenticatorSandboxBundle\Security\GithubAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class AuthenticatorController extends Controller
 {
@@ -26,8 +27,8 @@ class AuthenticatorController extends Controller
     public function adminAction()
     {
         //https://github.com/login/oauth/authorize?client_id=dbfe8cf8abcd145d8d2d
-
-        //return $this->redirectToRoute('admin-github');
+        //die(var_dump($user));
+        return $this->redirectToRoute('admin-github');
 
     }
 
@@ -36,8 +37,9 @@ class AuthenticatorController extends Controller
      */
     public function adminGithubAction()
     {
-
-        return $this->render('authenticator/admin-github.html.twig');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        return $this->render('authenticator/admin-github.html.twig',
+            ['user'=> $user]);
     }
 
     /**

@@ -15,6 +15,8 @@ security:
 
         main:
             anonymous: ~
+            pattern: ^/admin
+            stateless: false
             simple_preauth:
                 authenticator: github_authenticator
             provider: oauth.provider.github
@@ -23,5 +25,4 @@ security:
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
     access_control:
-            # require ROLE_ADMIN for /admin*
-            - { path: ^/administrator }
+          #- { path: ^/admin }

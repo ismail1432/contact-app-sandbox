@@ -9,6 +9,7 @@
 namespace AuthenticatorSandboxBundle\Security;
 
 
+use AuthenticatorSandboxBundle\Entity\User;
 use GuzzleHttp\Client;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -18,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 class GithubProvider implements UserProviderInterface
 {
     private $client;
-    private $client_id;
+
 
     public function __construct(Client $client)
     {
@@ -28,24 +29,21 @@ class GithubProvider implements UserProviderInterface
 
     public function loadUserByUsername($username)
     {
-        $response = $this->client->get('http://www.smaine.me');
-        $this->client->post('https://github.com/login/oauth/access_token?token=');
 
-        // make a call to your webservice here
-        $userData = '';
-        // pretend it returns an array on success, false if there is no user
-
-        if ($userData) {
-            $password = '...';
+        $response = $this->client->get(sprintf('https://api.github.com/user?access_token=%s', $username));
+        $userData = $response->getBody()->getContents();
+        $userTab = json_decode($userData, true);
 
 
-
-           // return new User($username, $password, $salt, $roles);
+        if (empty($userData)) {
+            throw new \LogicException('Did not managed to get your user info from Github.');
         }
 
-        throw new UsernameNotFoundException(
-            sprintf('Username "%s" does not exist.', $username)
-        );
+        $user = new User();
+        $user->createUser($userTab['name']);
+
+        return $user;
+
     }
 
     public function refreshUser(UserInterface $user)
@@ -56,7 +54,7 @@ class GithubProvider implements UserProviderInterface
             );
         }
 
-        return $this->loadUserByUsername($user->getUsername());
+        return $user;
     }
 
     public function supportsClass($class)

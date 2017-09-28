@@ -6,7 +6,7 @@
  * Time: 00:25
  */
 
-namespace AuthenticatorSandboxBundle\Security;
+namespace AuthenticatorSandboxBundle\Entity;
 
 
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -18,24 +18,25 @@ class User implements UserInterface
     private $salt;
     private $roles;
     private $mail;
+    private $name;
 
-    public function __construct($username, $password, $salt, array $roles, $mail)
-    {
-        $this->username = $username;
-        $this->password = $password;
-        $this->salt = $salt;
-        $this->roles = $roles;
-        $this->mail = $mail;
-    }
+   public function createUser($name){
+       $this->name = $name;
+   }
 
     public function getRoles()
     {
-        return $this->roles;
+        return array('ROLE_USER');
     }
 
     public function getMail()
     {
         return $this->mail;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 
     public function getPassword()
