@@ -57,8 +57,6 @@ services:
 
     GuzzleHttp\Client: '@m6web_guzzlehttp'
 
-
-
     ###DEMO##
     app.sayHello:
             class: AppBundle\Service\SayHello
@@ -70,5 +68,9 @@ services:
             public: true
             arguments:
                         - '@doctrine.orm.entity_manager'
+
+    create.fake-contact:
+            class: AppBundle\Service\CreateFakeContact
+            argument: ['@doctrine.orm.entity_manager']
 
 

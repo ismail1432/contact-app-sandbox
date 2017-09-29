@@ -155,5 +155,32 @@ class Contact
     {
         return $this->telephone;
     }
+
+    /**
+     * Hydrate User
+     * @param $nom
+     * @param $prenom
+     * @param $email
+     * @param $telephone
+     */
+    public function hydrateContact($nom, $prenom, $email, $telephone)
+    {
+        if (empty($nom)|| !isset($nom)) {
+           throw new \Exception("The parameter nom cannot be null");
+        }
+        if (empty($prenom)|| !isset($prenom)) {
+           throw new \Exception("The parameter prenom cannot be null");
+        }
+        if (empty($telephone)|| !isset($telephone)) {
+           throw new \Exception("The parameter telephone cannot be null");
+        }
+        if (empty($email)|| !isset($email)) {
+           throw new \Exception("The parameter email cannot be null");
+        }
+        $this->setNom($nom);
+        $this->setPrenom($prenom);
+        $this->setEmail($email);
+        $this->setTelephone($telephone);
+    }
 }
 
