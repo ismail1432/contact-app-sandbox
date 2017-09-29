@@ -72,5 +72,6 @@ services:
     create.fake-contact:
             class: AppBundle\Service\CreateFakeContact
             argument: ['@doctrine.orm.entity_manager']
+            public: true
 
 

@@ -9,12 +9,12 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Contact;
-use Symfony\Component\Console\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CreateContactCommand extends Command
+class CreateContactCommand extends ContainerAwareCommand
 {
 
     protected function configure()
@@ -43,13 +43,15 @@ class CreateContactCommand extends Command
     {
         $contact = new Contact();
 
-        $output->write('create a user.');
         $nom = $input->getArgument('nom');
         $prenom = $input->getArgument('prenom');
         $phone = $input->getArgument('telephone');
         $mail = $input->getArgument('email');
 
         $contact->hydrateContact($nom,$prenom,$mail,$phone);
+
+        $this->getContainer()->get('create.fake-contact')->createContact($contact);
+        $output->write('Contact created "\n" ');
     }
 
 }
