@@ -14,6 +14,7 @@ use GuzzleHttp\Client;
 use M6Web\Bundle\GuzzleHttpBundle\M6WebGuzzleHttpBundle;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\SimpleAuthenticatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -31,7 +32,7 @@ class GithubAuthenticator implements SimplePreAuthenticatorInterface
     private $client_secret;
     private $router;
 
-    public function __construct(Client $client, $client_id, $client_secret, Router $router)
+    public function __construct(Client $client, $client_id, $client_secret, RouterInterface $router)
     {
 
         $this->client_id = $client_id;

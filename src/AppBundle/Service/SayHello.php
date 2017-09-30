@@ -11,12 +11,13 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Contact;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class SayHello
 {
     private $em;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->em = $entityManager;
     }

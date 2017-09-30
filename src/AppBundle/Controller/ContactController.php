@@ -17,7 +17,6 @@ class ContactController extends Controller
     {
         $contacts = $this->getDoctrine()->getRepository(Contact::class)->findAll();
 
-        //die(var_dump($this->get('app.sayhello')->sayHello()));
         return $this->render('default/index.html.twig',
             [
               'contacts'=> $contacts

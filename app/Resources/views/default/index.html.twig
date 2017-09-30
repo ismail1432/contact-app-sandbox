@@ -3,6 +3,7 @@
 {% block body %}
     <div id="wrapper">
         <div id="container">
+            {{ dump(app) }}
             <h1>Annuaire de contact !</h1>
             {% for message in app.flashes('notice') %}
                 <div class="alert alert-notice">

@@ -10,6 +10,7 @@ namespace AppBundle\Service;
 
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class CreateFakeContact
 {
@@ -18,7 +19,7 @@ class CreateFakeContact
      * CreateFakeContact constructor.
      * @param EntityManager $manager
      */
-    public function __construct(EntityManager $manager)
+    public function __construct(EntityManagerInterface $manager)
     {
         $this->manager = $manager;
     }
