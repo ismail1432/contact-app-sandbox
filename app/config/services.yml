@@ -66,4 +66,13 @@ services:
                 $manager: '@doctrine.orm.entity_manager'
             public: true
 
+    printing.printer:
+            class: AppBundle\Printing\Printer
+
+    printing.formatter.json:
+            class: AppBundle\Printing\JsonFormatter
+            tags:
+                  - { format: json, name: printing.formatter }
+
+
 
