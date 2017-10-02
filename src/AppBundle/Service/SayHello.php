@@ -16,13 +16,10 @@ use Doctrine\ORM\EntityManagerInterface;
 class SayHello
 {
     private $em;
-    private $test;
 
-    public function __construct(EntityManagerInterface $entityManager,$test)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->em = $entityManager;
-        dump($test); die;
-
     }
 
     public function sayHello(){

@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f7bd96a-c7b5-4fe0-bdcb-eb6f06b6d594" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/DependencyInjection/Compiler/PrintingCompilerPass.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/Printing/FormatterInterface.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/Printing/JsonFormatter.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/Printing/Printer.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/authenticator/admin-github.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/authenticator/admin-github.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/AppBundle.php" afterPath="$PROJECT_DIR$/src/AppBundle/AppBundle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ContactController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ContactController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Service/SayHello.php" afterPath="$PROJECT_DIR$/src/AppBundle/Service/SayHello.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AuthenticatorSandboxBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/AuthenticatorSandboxBundle/Entity/User.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,7 +27,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="services.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="services.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/services.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
@@ -46,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SayHello.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SayHello.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/SayHello.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="28" />
+            <state relative-caret-position="180">
+              <caret line="19" column="69" lean-forward="false" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -199,10 +190,10 @@
         <option value="$PROJECT_DIR$/src/AuthenticatorSandboxBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/authenticator/admin-github.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Contact.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/SayHello.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ContactController.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/SayHello.php" />
       </list>
     </option>
   </component>
@@ -537,12 +528,12 @@
       <workItem from="1506815541780" duration="900000" />
       <workItem from="1506844536684" duration="8442000" />
       <workItem from="1506880874277" duration="1845000" />
-      <workItem from="1506928085386" duration="1163000" />
+      <workItem from="1506928085386" duration="1316000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58249000" />
+    <option name="totallyTimeSpent" value="58402000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -883,14 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/SayHello.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ContactController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -921,6 +904,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="55" column="24" lean-forward="false" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/SayHello.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="19" column="69" lean-forward="false" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
           <folding />
         </state>
       </provider>
