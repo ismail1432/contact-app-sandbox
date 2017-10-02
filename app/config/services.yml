@@ -47,10 +47,11 @@ services:
                $client_id: '%client_id%'
                $client_secret: '%client_secret%'
 
+
     GuzzleHttp\Client: '@m6web_guzzlehttp'
 
     ###DEMO##
-    app.sayHello:
+    app.sayhello:
             class: AppBundle\Service\SayHello
             public: true
 
@@ -65,14 +66,6 @@ services:
             arguments:
                 $manager: '@doctrine.orm.entity_manager'
             public: true
-
-    printing.printer:
-            class: AppBundle\Printing\Printer
-
-    printing.formatter.json:
-            class: AppBundle\Printing\JsonFormatter
-            tags:
-                  - { format: json, name: printing.formatter }
 
 
 

@@ -15,6 +15,7 @@ class ContactController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $this->container->get('app.sayhello')->sayHello();
         $contacts = $this->getDoctrine()->getRepository(Contact::class)->findAll();
 
         return $this->render('default/index.html.twig',
