@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Form\LoginForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -28,10 +29,23 @@ class SecurityController extends Controller
         // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
 
+        $form = $this->createForm(LoginForm::class,
+            [
+                '_username' => $lastUsername
+            ]);
+
         return $this->render('security/login.html.twig', array(
-            'last_username' => $lastUsername,
             'error' => $error,
+            'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logoutAction()
+    {
+
     }
 
 }

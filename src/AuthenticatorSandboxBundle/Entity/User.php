@@ -8,12 +8,30 @@
 
 namespace AuthenticatorSandboxBundle\Entity;
 
-
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @ORM\Entity
+ */
 class User implements UserInterface
 {
-    private $username;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=150)
+     */
+    protected $username;
     private $password;
     private $salt;
     private $roles;

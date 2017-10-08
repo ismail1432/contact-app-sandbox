@@ -6,6 +6,8 @@ security:
     providers:
         oauth.provider.github:
             id: github_provider
+        our_users:
+            entity: { class: AuthenticatorSandboxBundle\Entity\User, property: username }
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -13,13 +15,22 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
-            anonymous: ~
-            pattern: ^/admin
+        api:
+            pattern: ^/admin/
             stateless: false
             simple_preauth:
                 authenticator: github_authenticator
             provider: oauth.provider.github
+
+        default:
+            anonymous: ~
+            guard:
+                 authenticator:
+                     - app.security.login_form_authenticator
+            provider: our_users
+
+            logout:
+                path: /logout
 
 
             # https://symfony.com/doc/current/security/form_login_setup.html
