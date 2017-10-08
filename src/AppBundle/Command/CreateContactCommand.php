@@ -15,7 +15,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CreateContactCommand extends ContainerAwareCommand
+class CreateContactCommand extends ContainerAwareCommand 
 {
     protected $createFakeContact;
 
@@ -25,7 +25,8 @@ class CreateContactCommand extends ContainerAwareCommand
         $this->createFakeContact = $createFakeContact;
     }
 
-    protected function configure()
+
+    protected function configure(): void
     {
         $this
             // the name of the command (the part after "bin/console")
@@ -47,7 +48,11 @@ class CreateContactCommand extends ContainerAwareCommand
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
+    protected function execute(InputInterface $input, OutputInterface $output) :void
     {
         $contact = new Contact();
 
